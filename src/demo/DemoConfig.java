@@ -11,7 +11,7 @@ public class DemoConfig extends JFinalConfig {
 	 * 此方法用来配置 JFinal 常量值， 如开发模式常量 devMode 的配置， 默认视图类型 ViewType的配置
 	 */
 	public void configConstant(Constants me) {//constants 常量；常量配置方法
-			me.setDevMode(true);//是否打印日志
+			me.setDevMode(true);//是否是开发者模式。是否打印日志
 			
 //			me.setBaseDownloadPath("download");//设置文件下载的默认路径
 //			me.setBaseUploadPath("");//设置文件上传存放的默认路径
@@ -25,10 +25,10 @@ public class DemoConfig extends JFinalConfig {
 //			me.setI18nDefaultBaseName("");//
 //			me.setI18nDefaultLocale("");//
 //			me.setMainRenderFactory(null);
-//			me.setMaxPostSize(1024*1024);//设置文件上传大小限制。这里最大1M
+//			me.setMaxPostSize(1024*1024);//设置文j件上传大小限制。这里最大1M
 			me.setReportAfterInvocation(false);//先执行程序还是打印日志
 //			me.setTokenCache(null);//设置一个token的缓存
-//			me.setUrlParaSeparator("");//设置url分隔符
+			//me.setUrlParaSeparator("@");//设置url分隔符，默认为中划线-
 //			me.setViewType(ViewType.FREE_MARKER);//视图渲染
 		}
 		public void configRoute(Routes me) {//路由配置
