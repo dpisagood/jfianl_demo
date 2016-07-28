@@ -38,7 +38,14 @@ public class UserController extends Controller {
 	
 	public void center(){
 		String cookieinfo=getCookie("user");
+		//将字符串截取成数组元素，然后取第一个
 		String user=cookieinfo.split("#")[0];
+		String md5=cookieinfo.split("#")[1];
+		if(HashKit.md5(user).equals(md5)){
+			System.out.println(">>>>>>>>>>>>>合法的用户");
+		}else{
+			System.out.println("?????????????非法的用户");
+		}
 		if(user==null){
 			redirect("/user");
 			return ;
