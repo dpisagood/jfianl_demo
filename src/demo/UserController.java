@@ -15,9 +15,17 @@ public class UserController extends Controller {
 	
 	public void index(){
 		render("/User.html");
+		createToken();
+		System.out.println("创建token成功");
 	}
 	
 	public void login(){
+		if(!validateToken()){
+			System.out.println(">>>>>>>>token失效");
+			redirect("/user");
+			return;
+		}
+		System.out.println(">>>>>>>>token验证成功");
 		String user=getPara("user");
 		String password=getPara("password");
 		String pas=users.get(user);
