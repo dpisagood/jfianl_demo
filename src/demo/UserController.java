@@ -15,35 +15,51 @@ public class UserController extends Controller {
 	
 	public void index(){
 		render("/User.html");
-		createToken();
+		createToken();//每次访问创建一个token
 		System.out.println("创建token成功");
 	}
 	
 	public void login(){
-		if(!validateToken()){
-			System.out.println(">>>>>>>>token失效");
-			redirect("/user");
-			return;
-		}
-		System.out.println(">>>>>>>>token验证成功");
-		String user=getPara("user");
-		String password=getPara("password");
-		String pas=users.get(user);
-		if(pas==null){
-			redirect("/user");
-			return;
-		}
-		//将cookie 进行特殊的md5加密，然后通过#标示符截取用户信息
-		String cookieinfo=user+"#"+HashKit.md5(user);
-		if(pas.equals(password)){
-			setCookie("user",cookieinfo,1000);
-			redirect("/user/center");
-			return;
-		}else{
-			redirect("/user");
-		}
+		keepPara();//转移参数
+		
+		redirect("/user_center.html");
 	}
+		
 	
+	
+//	public void login(){
+//		//User.html中有获取验证码的请求url
+//		if(!validateCaptcha("yzm")){//审核验证码
+//			System.out.println("验证码错误");
+//			redirect("/user");
+//			return;
+//		}
+//		System.out.println("验证码验证通过");
+//		if(!validateToken()){//验证token
+//			System.out.println(">>>>>>>>token失效");
+//			redirect("/user");
+//			return;
+//		}
+//		System.out.println(">>>>>>>>token验证成功");
+//		String username=getPara("username");
+//		String password=getPara("password");
+//		String pas=users.get(username);
+//		if(pas==null){
+//			redirect("/user");
+//			return;
+//		}
+//		//将cookie 进行特殊的md5加密，然后通过#标示符截取用户信息
+//		String cookieinfo=username+"#"+HashKit.md5(username);
+//		if(pas.equals(password)){
+//			setCookie("user",cookieinfo,1000);//颁发cookie
+////			keepPara();//不行
+//			redirect("/user/center");//重定向到用户中心。在用户中心中验证cookie的合法性
+//			return;
+//		}else{
+//			redirect("/user");
+//		}
+//	}
+
 	public void center(){
 		String cookieinfo=getCookie("user");
 		//将字符串截取成数组元素，然后取第一个
@@ -58,8 +74,12 @@ public class UserController extends Controller {
 			redirect("/user");
 			return ;
 		}
-		renderText(user+",欢迎来到用户中心！");
+//		keepPara();//不行
+		renderText(user+"欢迎来到用户中心！");
+//		render("/user_center.html");
 	}
 	
-	
+	public void yzm(){//创建验证码
+		renderCaptcha();
+	}
 }

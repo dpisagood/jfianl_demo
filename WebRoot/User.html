@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-   <form action="/user/login" method="post" >
-    <input type="hidden" name="_jfinal_token"　 value="${_jfinal_token!}">
-     <div class="form-group">
-       用户名：<input type="text" class="form-control" name="user" >
-     </div>
-     <div class="form-group">
-       密&nbsp;&nbsp;&nbsp;码：<input type="password" class="form-control" name="password" >
-     </div>
-     <input type="submit" value="提交" />
-   </form>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录页面</title>
+	</head>
+	<body>
+		<form action="/user/login" method="post" >
+		    	<input type="hidden" name="_jfinal_token"　 value="${_jfinal_token!}">
+			<div class="form-group">
+				<input type="text" class="form-control" name="username" placeholder="用户名" >
+			</div></br>
+			<div class="form-group">
+				<input type="password" class="form-control" name="password" placeholder="密码" >
+			</div></br>
+				<input type="text" class="form-control" name="yzm" placeholder="验证码"/> </br>
+		   		<img  src="/user/yzm" onclick="this.src='/user/yzm?x='+Math.random();"/> </br>
+			<input type="submit" value="提交" />
+		</form>
+	</body>
 </html>
