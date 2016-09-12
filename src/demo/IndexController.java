@@ -2,7 +2,6 @@ package demo;
 
 
 import com.jfinal.core.Controller;
-import com.jfinal.upload.UploadFile;
 
 /**
  * Action是url请求中的一个最小单位，每个Action都会对应一个URL地址，在JFinal体系里，

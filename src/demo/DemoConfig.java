@@ -5,9 +5,10 @@ import com.jfinal.config.Interceptors;
 import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
-import com.jfinal.render.IMainRenderFactory;
-import com.jfinal.render.Render;
-import com.jfinal.render.TextRender;
+import com.jfinal.ext.handler.FakeStaticHandler;
+
+import demo.handler.Handler1;
+import demo.handler.Handler2;
 
 public class DemoConfig extends JFinalConfig {
 	/**
@@ -54,5 +55,9 @@ public class DemoConfig extends JFinalConfig {
 		}
 		public void configPlugin(Plugins me) {}//插件配置
 		public void configInterceptor(Interceptors me) {}//此方法用来配置 JFinal 的全局拦截器;interceptors拦截机
-		public void configHandler(Handlers me) {}//handlers处理者，管理者，处理器配置
+		public void configHandler(Handlers handlers) {
+//			handlers.add(new FakeStaticHandler());//添加jfinal自带的伪静态处理，url后面必须有.html不然会跳转到错误页面
+			handlers.add(new Handler1());
+			handlers.add(new Handler2());
+		}//handlers处理者，管理者，处理器配置
 }
