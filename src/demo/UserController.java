@@ -53,6 +53,7 @@ public class UserController extends Controller {
 		String cookieinfo=username+"#"+HashKit.md5(username);
 		if(pas.equals(password)){
 			setCookie("user",cookieinfo,1000);//颁发cookie
+			setSessionAttr("usercookieid", cookieinfo);//将cookie的值存到session中
 //			keepPara();//不行
 			redirect("/user/center");//重定向到用户中心。在用户中心中验证cookie的合法性
 			return;
