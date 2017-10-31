@@ -12,8 +12,8 @@ public class Handler1 extends Handler{
 		System.out.println("handler1 invoke!:"+target);
 		if(target.endsWith(".html")){
 			target=target.substring(0,target.lastIndexOf("."));
+			System.out.println("substring target:"+target);
 		}
-		System.out.println("substring target:"+target);
 		next.handle(target, request, response, isHandled);//执行下一个handler
 		
 	}
